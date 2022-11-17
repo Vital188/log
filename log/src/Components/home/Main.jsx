@@ -16,7 +16,7 @@ function Main() {
 
         // READ for list
         useEffect(() => {
-            axios.get('http://localhost:3003/home/movies', authConfig())
+            axios.get('http://localhost:3003/server/movies', authConfig())
                 .then(res => {
                     if (filterOn.current) {
                         setMovies(res.data.map((d, i) =>
@@ -32,7 +32,7 @@ function Main() {
             if (null === rateData) {
                 return;
             }
-            axios.put('http://localhost:3003/home/movies/' + rateData.id, rateData, authConfig())
+            axios.put('http://localhost:3003/server/movies/' + rateData.id, rateData, authConfig())
             .then(res => {
                 setLastUpdate(Date.now());
             });

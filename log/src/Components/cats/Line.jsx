@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import Cats from '../../Contexts/Cats';
 
 function Line({ cat, movies }) {
-
+console.log(cat)
     const { setDeleteData, setModalData } = useContext(Cats);
 console.log(cat)
     return (
@@ -13,7 +13,9 @@ console.log(cat)
                         {cat.titl}
                     </div>
                     <div className="line__content__title">
-                        {cat.title}
+                    {
+                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}{m.image}{m.price}{m.tim}{m.sav}</option>)
+                        }
                     </div>
                 </div>
                 <div className="line__buttons">

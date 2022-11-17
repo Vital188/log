@@ -165,7 +165,7 @@ app.get("/server/movies", (req, res) => {
 });
 app.get("/home/movies", (req, res) => {
     const sql = `
-    SELECT m.*, c.title AS catTitle, c.id AS cid
+    SELECT m.*, c.titl AS catTitl, c.id AS cid
     FROM movies AS m
     INNER JOIN cats AS c
     ON m.cat_id = c.id
