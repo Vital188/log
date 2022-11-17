@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import Cats from '../../Contexts/Cats';
 import Containers from '../Data/Conteiners';
+import rand from "../../Functions/rand"
 
 function Create() {
 
@@ -12,12 +13,14 @@ function Create() {
     const [movie4, setMovie4] = useState(0);
     const [movie5, setMovie5] = useState(0);
     const [movie6, setMovie6] = useState(0);
+    const [numbers, setNumbers] = useState ('')
 
 console.log(movies)
 
     const add = () => {
         setCreateData({
             titl,
+            numbers: "CA"+ rand(100, 999),
             movie_id: parseInt(movie),
             movie_id2: parseInt(movie2),
             movie_id3: parseInt(movie3),
@@ -26,6 +29,7 @@ console.log(movies)
             movie_id6: parseInt(movie6),
         });
         setTitl(0);
+        setNumbers('');
         setMovie(0);
         setMovie2(0);
         setMovie3(0);
@@ -38,6 +42,15 @@ console.log(movies)
         <div className="card m-4">
             <h5 className="card-header">Container List</h5>
             <div className="card-body">
+            <div className="mb-3">
+                    <label className="form-label">Number</label>
+                    <select className="form-select" value={numbers} onChange={e => setNumbers(e.target.value)}>
+                        <option value={0} disabled>Choose from list</option>
+                        {
+                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
+                        }
+                    </select>
+                    </div>
             <label className="form-label">Container size</label>
                 <div className="mb-3">
                 <select
