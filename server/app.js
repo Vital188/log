@@ -118,20 +118,20 @@ app.post("/login", (req, res) => {
 //CREATE
 app.post("/server/cats", (req, res) => {
     const sql = `
-    INSERT INTO cats (title)
-    VALUES (?)
+    INSERT INTO cats (titl, movie_id)
+    VALUES (?, ?)
     `;
-    con.query(sql, [req.body.title], (err, result) => {
+    con.query(sql, [req.body.titl, req.body.movie_id], (err, result) => {
         if (err) throw err;
         res.send(result);
     });
 });
 app.post("/server/movies", (req, res) => {
     const sql = `
-    INSERT INTO movies (title, price, cat_id, image)
-    VALUES (?, ?, ?, ?)
+    INSERT INTO movies (title, price, tim, sav, image)
+    VALUES (?, ?, ?, ?, ?)
     `;
-    con.query(sql, [req.body.title, req.body.price, req.body.cat_id, req.body.image], (err, result) => {
+    con.query(sql, [req.body.title, req.body.price, req.body.tim, req.body.sav, req.body.image,], (err, result) => {
         if (err) throw err;
         res.send(result);
     });
@@ -140,9 +140,11 @@ app.post("/server/movies", (req, res) => {
 // READ (all)
 app.get("/server/cats", (req, res) => {
     const sql = `
-    SELECT id, title
-    FROM cats
-    ORDER BY id DESC
+    SELECT c.*, m.id AS mid, m.title
+    FROM cats AS c
+    INNER JOIN movies AS m
+    ON c.movie_id = m.id
+    ORDER BY c.titl
     `;
     con.query(sql, (err, result) => {
         if (err) throw err;

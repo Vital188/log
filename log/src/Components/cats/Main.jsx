@@ -14,6 +14,7 @@ function Main() {
     const [deleteData, setDeleteData] = useState(null);
     const [modalData, setModalData] = useState(null);
     const [editData, setEditData] = useState(null);
+    const [movies, setMovies] = useState(null);
 
     useEffect(() => {
         axios.get('http://localhost:3003/server/cats', authConfig())
@@ -21,6 +22,13 @@ function Main() {
             setCats(res.data);
         })
     }, [lastUpdate]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3003/server/movies', authConfig())
+        .then(res => {
+            setMovies(res.data);
+        })
+    }, [lastUpdate]); 
 
     useEffect(() => {
         if (null === createData) {
@@ -55,6 +63,7 @@ function Main() {
 
     return (
         <Cats.Provider value={{
+            movies,
             setCreateData,
             cats,
             setDeleteData,

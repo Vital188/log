@@ -22,8 +22,12 @@ function Line({ movie }) {
                         {movie.price}
                     </div>
                     <div className="line__content__info">
-                        {movie.rating ?? 'no rating'}
+                        {movie.tim}
                     </div>
+                    <div className="line__content__info">
+                        {movie.sav}
+                    </div>
+                    
                     <div className="line__content__info">
                         {cats.find(c => c.id === movie.cat_id)?.title}
                     </div>
