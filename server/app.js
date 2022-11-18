@@ -233,24 +233,24 @@ app.put("/server/movies/:id", (req, res) => {
     if (req.body.deletePhoto) {
         sql = `
         UPDATE movies
-        SET title = ?, price = ?, cats_id = ?, image = null
+        SET title = ?, price = ?, tim = ?, sav = ?, image = null
         WHERE id = ?
         `;
-        r = [req.body.title, req.body.price, req.body.cat_id, req.params.id];
+        r = [req.body.title, req.body.price, req.body.tim, req.body.sav,  req.params.id];
     } else if (req.body.image) {
         sql = `
         UPDATE movies
-        SET title = ?, price = ?, cats_id = ?, image = ?
+        SET title = ?, price = ?, tim = ?, sav = ?, image = ?
         WHERE id = ?
         `;
-        r = [req.body.title, req.body.price, req.body.cat_id, req.body.image, req.params.id];
+        r = [req.body.title, req.body.price, req.body.tim, req.body.sav, req.body.image, req.params.id];
     } else {
         sql = `
         UPDATE movies
-        SET title = ?, price = ?, cast_id = ?
+        SET title = ?, price = ?, tim = ?, sav = ?, cast_id = ?
         WHERE id = ?
         `;
-        r = [req.body.title, req.body.price, req.body.cat_id, req.params.id]
+        r = [req.body.title, req.body.price, req.body.tim, req.body.sav, req.params.id]
     }
     con.query(sql, r, (err, result) => {
         if (err) throw err;

@@ -6,7 +6,8 @@ function Edit() {
 
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
-    const [cat, setCat] = useState(0);
+    const [tim, setTim] = useState('');
+    const [sav, setSav] = useState('');
     const fileInput = useRef();
     const [photoPrint, setPhotoPrint] = useState(null);
     const [deletePhoto, setDeletePhoto] = useState(false);
@@ -25,7 +26,8 @@ function Edit() {
         setEditData({
             title,
             price: parseFloat(price),
-            cat_id: parseInt(cat),
+            tim,
+            sav,
             id: modalData.id,
             deletePhoto: deletePhoto ? 1 : 0,
             image: photoPrint
@@ -40,7 +42,8 @@ function Edit() {
         }
         setTitle(modalData.title);
         setPrice(modalData.price);
-        setCat(modalData.cat_id);
+        setTim(modalData.tim);
+        setSav(modalData.sav);
         setPhotoPrint(modalData.image);
         setDeletePhoto(false);
     }, [modalData])
@@ -62,22 +65,22 @@ function Edit() {
                     <div className="card m-4">
                         <div className="card-body">
                             <div className="mb-3">
-                                <label className="form-label">Movie Title</label>
+                                <label className="form-label">Box Title</label>
                                 <input type="text" className="form-control" value={title} onChange={e => setTitle(e.target.value)} />
                             </div>
                             <div className="mb-3">
-                                <label className="form-label">Movie Price</label>
+                                <label className="form-label">Box weight</label>
                                 <input type="text" className="form-control" value={price} onChange={e => setPrice(e.target.value)} />
                             </div>
                             <div className="mb-3">
-                                <label className="form-label">Cats</label>
-                                <select className="form-select" value={cat} onChange={e => setCat(e.target.value)}>
-                                    <option value={0} disabled>Choose from list</option>
-                                    {
-                                        cats?.map(c => <option key={c.id} value={c.id}>{c.title}</option>)
-                                    }
-                                </select>
+                                <label className="form-label">Box save</label>
+                                <input type="text" className="form-control" value={tim} onChange={e => setTim(e.target.value)} />
                             </div>
+                            <div className="mb-3">
+                                <label className="form-label">Product shelf life (days)</label>
+                                <input type="text" className="form-control" value={sav} onChange={e => setSav(e.target.value)} />
+                            </div>
+                                                    
                             <div className="mb-3">
                                 <label className="form-label">Movie Image</label>
                                 <input ref={fileInput} type="file" className="form-control" onChange={doPhoto} />
