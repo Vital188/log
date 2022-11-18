@@ -9,7 +9,7 @@ function Line({ movie }) {
         <li className="list-group-item" >
             <div className="line">
                 <div className="line__content" style={{
-                
+                alignItems: 'center'
                 }}>
                     <div className="line__content__info" style={{
                         alignItems: 'center',
@@ -38,8 +38,13 @@ function Line({ movie }) {
                     </div>
                     
                      </div>
-                <div className="line__buttons">
-                    <button onClick={() => setModalData(movie)} type="button" className="btn btn-outline-success">Edit</button>
+                <div className="line__buttons" style={{
+                    flexDirection: 'column',
+                    alignItems: 'stretch'
+                }}>
+                    <button onClick={() => setModalData(movie)} type="button" className="btn btn-outline-success" style={{
+                            marginBottom: '10px'
+                    }}>Edit</button>
                     <button onClick={() => setDeleteData(movie)} type="button" className="btn btn-outline-danger">Delete</button>
                 </div>
             </div>

@@ -41,7 +41,9 @@ function Line({ movie }) {
                        
                     </div>
 
-                    <ul className="list-group">
+                    <ul className="list-group" style={{
+                        flexDirection: 'row'
+                    }}>
                     {
                         movie[1]?.map(c => c.cat_id !== null ? <div key={c.cid} className="list-group-item"><h2>{c.title}</h2><div><img src={c.image} alt={c.title}>
                         </img>{c.price}{c.tim}</div></div> : null)
