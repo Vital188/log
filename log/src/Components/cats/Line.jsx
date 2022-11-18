@@ -3,7 +3,7 @@ import Cats from '../../Contexts/Cats';
 
 function Line({ cat}) {
     
-    const { setDeleteData, setModalData, movies } = useContext(Cats);
+    const { setDeleteData, setModalData } = useContext(Cats);
 console.log(cat)
     return (
         <li className="list-group-item">

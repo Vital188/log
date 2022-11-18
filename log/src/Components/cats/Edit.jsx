@@ -4,19 +4,29 @@ import Cats from '../../Contexts/Cats';
 function Edit() {
 
     const { modalData, setModalData, setEditData } = useContext(Cats);
-    const [title, setTitle] = useState('');
+    const [titl, setTitl] = useState('');
+    const [box, setBox] = useState('');
 
     useEffect(() => {
         if (null === modalData) {
             return;
         }
-        setTitle(modalData.title);
+        setTitl(modalData.titl);
+
+    }, [modalData]);
+
+    useEffect(() => {
+        if (null === modalData) {
+            return;
+        }
+        setBox(modalData.box);
 
     }, [modalData]);
 
     const save = () => {
         setEditData({
-            title,
+            titl,
+            box,
             id: modalData.id
         });
         setModalData(null);
@@ -31,15 +41,19 @@ function Edit() {
             <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title">Edit Cat</h5>
+                        <h5 className="modal-titl">Edit container</h5>
                         <button onClick={() => setModalData(null)} type="button" className="btn-close"></button>
                     </div>
                     <div className="modal-body">
                         <div className="card m-4">
                             <div className="card-body">
                                 <div className="mb-3">
-                                    <label className="form-label">Cat Title</label>
-                                    <input type="text" className="form-control" value={title} onChange={e => setTitle(e.target.value)} />
+                                    <label className="form-label">Container size:</label>
+                                    <input type="text" className="form-control" value={titl} onChange={e => setTitl(e.target.value)} />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Box number:</label>
+                                    <input type="text" className="form-control" value={box} onChange={e => setBox(e.target.value)} />
                                 </div>
                             </div>
                         </div>

@@ -6,29 +6,35 @@ function Line({ movie }) {
     const { setDeleteData, setModalData} = useContext(Movies);
 
     return (
-        <li className="list-group-item">
+        <li className="list-group-item" >
             <div className="line">
-                <div className="line__content">
-                    <div className="line__content__info">
+                <div className="line__content" style={{
+                
+                }}>
+                    <div className="line__content__info" style={{
+                        alignItems: 'center',
+                        
+                        
+                    }}>
                         {movie.image ? <div className='img-bin'>
                             <img src={movie.image} alt={movie.title}>
                             </img>
                         </div> : <span className="red-image">No image</span>}
-                    </div>
+                    </div> 
                     <div className="line__content__title">
-                        {movie.title}
+                    Name:    {movie.title}
                     </div>
                     <div className="line__content__info">
-                        {movie.price}
+                    Weight:    {movie.price}
                     </div>
                     <div className="line__content__info">
-                        {movie.tim}
+                    Save:    {movie.tim}
                     </div>
                     <div className="line__content__info">
-                        {movie.sav}
+                     Shelf Life:   {movie.sav}
                     </div>
                     <div className="line__content__info">
-                        {movie.cid}
+                    Container:    {movie.cid}
                     </div>
                     
                      </div>
