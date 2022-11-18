@@ -118,10 +118,10 @@ app.post("/login", (req, res) => {
 //CREATE
 app.post("/server/cats", (req, res) => {
     const sql = `
-    INSERT INTO cats (titl, numbers)
-    VALUES (?, ?)
+    INSERT INTO cats (titl, numbers, box)
+    VALUES (?, ?, ?)
     `;
-    con.query(sql, [req.body.titl, req.body.numbers], (err, result) => {
+    con.query(sql, [req.body.titl, req.body.numbers, req.body.box], (err, result) => {
         if (err) throw err;
         res.send(result);
     });
@@ -152,7 +152,7 @@ app.get("/server/cats", (req, res) => {
 // READ (all)
 app.get("/server/movies", (req, res) => {
     const sql = `
-    SELECT m.*, c.id AS cid
+    SELECT m.*, c.id AS cid, c.titl, c.box
     FROM movies AS m
     LEFT JOIN cats AS c
     ON m.cats_id = c.id
@@ -233,21 +233,21 @@ app.put("/server/movies/:id", (req, res) => {
     if (req.body.deletePhoto) {
         sql = `
         UPDATE movies
-        SET title = ?, price = ?, cat_id = ?, image = null
+        SET title = ?, price = ?, cats_id = ?, image = null
         WHERE id = ?
         `;
         r = [req.body.title, req.body.price, req.body.cat_id, req.params.id];
     } else if (req.body.image) {
         sql = `
         UPDATE movies
-        SET title = ?, price = ?, cat_id = ?, image = ?
+        SET title = ?, price = ?, cats_id = ?, image = ?
         WHERE id = ?
         `;
         r = [req.body.title, req.body.price, req.body.cat_id, req.body.image, req.params.id];
     } else {
         sql = `
         UPDATE movies
-        SET title = ?, price = ?, cat_id = ?
+        SET title = ?, price = ?, cast_id = ?
         WHERE id = ?
         `;
         r = [req.body.title, req.body.price, req.body.cat_id, req.params.id]

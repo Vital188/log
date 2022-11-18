@@ -13,19 +13,24 @@ function Main() {
         const filterOn = useRef(false);
         const filterWhat = useRef(null);
 
-
+        const reList = data => {
+            const d = new Map();
+            data.forEach(line => {
+                if (d.has(line.cid)) {
+                    d.set(line.cid, [...d.get(line.cid), line]);
+                } else {
+                    d.set(line.cid, [line]);
+                }
+            });
+            return [...d];
+        }
         // READ for list
         useEffect(() => {
             axios.get('http://localhost:3003/server/movies', authConfig())
-                .then(res => {
-                    if (filterOn.current) {
-                        setMovies(res.data.map((d, i) =>
-                         filterWhat.current === d.cats_id ? {...d, show: true, row: i} : {...d, show: false, row: i}));
-                    } else {
-                        setMovies(res.data.map((d, i) => ({...d, show: true, row: i})));
-                    }
-                })
-        }, [lastUpdate]);
+            .then(res => {
+                setMovies(reList(res.data));
+            })
+    }, [lastUpdate]);
 
 console.log(movies)
         useEffect(() => {

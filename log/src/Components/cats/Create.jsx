@@ -1,7 +1,8 @@
 import { useState, useContext } from 'react';
 import Cats from '../../Contexts/Cats';
 import Containers from '../Data/Conteiners';
-import rand from "../../Functions/rand"
+import rand from "../../Functions/rand";
+import Box from '../Data/Box';
 
 function Create() {
 
@@ -13,6 +14,7 @@ function Create() {
     const [movie4, setMovie4] = useState(0);
     const [movie5, setMovie5] = useState(0);
     const [movie6, setMovie6] = useState(0);
+    const [box, setBox] = useState(0);
     const [numbers, setNumbers] = useState ('')
 
 console.log(movies)
@@ -21,6 +23,7 @@ console.log(movies)
         setCreateData({
             titl,
             numbers: rand(100, 999),
+            box,
             movie_id: parseInt(movie),
             movie_id2: parseInt(movie2),
             movie_id3: parseInt(movie3),
@@ -30,6 +33,7 @@ console.log(movies)
         });
         setTitl(0);
         setNumbers('');
+        setBox(0)
         setMovie(0);
         setMovie2(0);
         setMovie3(0);
@@ -59,108 +63,25 @@ console.log(movies)
             </option>
           ))}
         </select>
-
-       {titl === 'M' ? 
         <div className="mb-3">
-                    <label className="form-label">Box 1</label>
-                    <select className="form-select" value={movie} onChange={e => setMovie(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                
-                    <label className="form-label">Box 2</label>
-                    <select className="form-select" value={movie2} onChange={e => setMovie2(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                    <label className="form-label">Box 3</label>
-                    <select className="form-select" value={movie3} onChange={e => setMovie3(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                    <label className="form-label">Box 4</label>
-                    <select className="form-select" value={movie4} onChange={e => setMovie4(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select></div> 
-                 : null}
-
-                {titl === 'S' ? 
-        <div className="mb-3">
-                    <label className="form-label">Box 1</label>
-                    <select className="form-select" value={movie} onChange={e => setMovie(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                
-                    <label className="form-label">Box 2</label>
-                    <select className="form-select" value={movie2} onChange={e => setMovie2(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                </div>  : null}
-
-                {titl === 'L' ? 
-        <div className="mb-3">
-                    <label className="form-label">Box 1</label>
-                    <select className="form-select" value={movie} onChange={e => setMovie(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                
-                    <label className="form-label">Box 2</label>
-                    <select className="form-select" value={movie2} onChange={e => setMovie2(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                    <label className="form-label">Box 3</label>
-                    <select className="form-select" value={movie3} onChange={e => setMovie3(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                    <label className="form-label">Box 4</label>
-                    <select className="form-select" value={movie4} onChange={e => setMovie4(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-
-                    <label className="form-label">Box 5</label>
-                    <select className="form-select" value={movie5} onChange={e => setMovie5(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                    <label className="form-label">Box 6</label>
-                    <select className="form-select" value={movie6} onChange={e => setMovie6(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                </div>  : null}
+                <select
+          className="form-select mb-4"
+          value={box}
+          onChange={(e) => setBox(e.target.value)}
+          aria-label="Default select example"
+        >
+          <option value={0} disabled>
+            Choose box number:
+          </option>
+          {Box?.map((b) => (
+            <option key={b.id} value={b.nm}>
+            {b.nm}
+            </option>
+          ))}
+        </select>
                 </div> 
                 <button onClick={add} type="button" className="btn btn-outline-success">Add</button>
+            </div>
             </div>
         </div>
     );

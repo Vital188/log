@@ -62,7 +62,7 @@ function List() {
                 </div>
             </div>
             <div className="card m-4">
-                <h5 className="card-header">Movies List ({stats.movieCount}) <small onClick={resetFilter}>show all cats</small></h5>
+                <h5 className="card-header">Container List ({stats.movieCount}) <small onClick={resetFilter}>show all cats</small></h5>
                 <div className="card-body">
                     <ul className="list-group">
                         {

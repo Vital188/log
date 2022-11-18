@@ -33,18 +33,19 @@ function Line({ movie }) {
             <div className="home">
                 <div className="home__content">
                     <div className="home__content__info">
-                        <h1> {movie.cats_id}</h1>
-                        <h2>{movie.title}</h2>
-                        {movie.image ? <div className='img-bin'>
-                            <img src={movie.image} alt={movie.title}>
-                            </img>
-                        </div> : null}
+                        <h1>Container Nr. {movie[1][0].cats_id}</h1>
+                        <h2>Size: {movie[1][0].titl}</h2> 
+                        <h3>Boxes:{movie[1][0].box}</h3>
                     </div>
                     <div className="home__content__price">
-                        {movie.price} Eur
+                       
                     </div>
 
-                    
+                    <ul className="list-group">
+                    {
+                        movie[1]?.map(c => c.cat_id !== null ? <li key={c.cid} className="list-group-item"><h2>{c.title}</h2><div>{c.image}{c.price}{c.tim}</div></li> : null)
+                    }
+                </ul>
 
                     
                     
