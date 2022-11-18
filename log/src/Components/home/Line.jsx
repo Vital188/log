@@ -33,6 +33,7 @@ function Line({ movie }) {
             <div className="home">
                 <div className="home__content">
                     <div className="home__content__info">
+                        <h1> {movie.cats_id}</h1>
                         <h2>{movie.title}</h2>
                         {movie.image ? <div className='img-bin'>
                             <img src={movie.image} alt={movie.title}>
@@ -43,21 +44,11 @@ function Line({ movie }) {
                         {movie.price} Eur
                     </div>
 
-                    <div className="home__content__cat click-link" onClick={filter}>
-                        {movie.catTitle}
-                    </div>
+                    
 
-                    <div className="home__content__info">
-                        {movie.rating ?? 'no rating'}
-                        <select value={rate} onChange={e => setRate(e.target.value)}>
-                            {
-                                [...Array(10)].map((_, i) => <option key={i + 1} value={i + 1}>{i + 1}</option>)
-                            }
-                        </select>
-                    </div>
-                    <div className="home__buttons">
-                        <button onClick={doRating} type="button" className="btn btn-outline-success">Rate</button>
-                    </div>
+                    
+                    
+                    
                 </div>
             </div>
         </li>

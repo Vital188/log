@@ -60,7 +60,7 @@ function Main() {
         });
     }, [editData]);
 
-
+    console.log(movies)
     return (
         <Cats.Provider value={{
             movies,

@@ -17,7 +17,7 @@ function Main() {
 
     const [cats, setCats] = useState(null);
 
-
+    console.log(movies, cats)
 
     // READ for select
     useEffect(() => {

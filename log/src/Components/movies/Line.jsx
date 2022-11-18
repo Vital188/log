@@ -3,7 +3,7 @@ import Movies from '../../Contexts/Movies';
 
 function Line({ movie }) {
 
-    const { setDeleteData, setModalData, cats } = useContext(Movies);
+    const { setDeleteData, setModalData} = useContext(Movies);
 
     return (
         <li className="list-group-item">
@@ -27,11 +27,11 @@ function Line({ movie }) {
                     <div className="line__content__info">
                         {movie.sav}
                     </div>
-                    
                     <div className="line__content__info">
-                        {cats.find(c => c.id === movie.cat_id)?.title}
+                        {movie.cid}
                     </div>
-                </div>
+                    
+                     </div>
                 <div className="line__buttons">
                     <button onClick={() => setModalData(movie)} type="button" className="btn btn-outline-success">Edit</button>
                     <button onClick={() => setDeleteData(movie)} type="button" className="btn btn-outline-danger">Delete</button>

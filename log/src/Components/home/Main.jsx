@@ -20,14 +20,14 @@ function Main() {
                 .then(res => {
                     if (filterOn.current) {
                         setMovies(res.data.map((d, i) =>
-                         filterWhat.current === d.cat_id ? {...d, show: true, row: i} : {...d, show: false, row: i}));
+                         filterWhat.current === d.cats_id ? {...d, show: true, row: i} : {...d, show: false, row: i}));
                     } else {
                         setMovies(res.data.map((d, i) => ({...d, show: true, row: i})));
                     }
                 })
         }, [lastUpdate]);
 
-
+console.log(movies)
         useEffect(() => {
             if (null === rateData) {
                 return;

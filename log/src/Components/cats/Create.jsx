@@ -20,7 +20,7 @@ console.log(movies)
     const add = () => {
         setCreateData({
             titl,
-            numbers: "CA"+ rand(100, 999),
+            numbers: rand(100, 999),
             movie_id: parseInt(movie),
             movie_id2: parseInt(movie2),
             movie_id3: parseInt(movie3),
@@ -42,16 +42,7 @@ console.log(movies)
         <div className="card m-4">
             <h5 className="card-header">Container List</h5>
             <div className="card-body">
-            <div className="mb-3">
-                    <label className="form-label">Number</label>
-                    <select className="form-select" value={numbers} onChange={e => setNumbers(e.target.value)}>
-                        <option value={0} disabled>Choose from list</option>
-                        {
-                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
-                        }
-                    </select>
-                    </div>
-            <label className="form-label">Container size</label>
+                        <label className="form-label">Container size</label>
                 <div className="mb-3">
                 <select
           className="form-select mb-4"
@@ -99,8 +90,8 @@ console.log(movies)
                         {
                             movies?.map(m => <option key={m.id} value={m.id}>{m.title}</option>)
                         }
-                    </select>
-                </div>  : null}
+                    </select></div> 
+                 : null}
 
                 {titl === 'S' ? 
         <div className="mb-3">

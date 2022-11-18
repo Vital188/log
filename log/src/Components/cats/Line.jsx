@@ -1,18 +1,26 @@
 import { useContext } from 'react';
 import Cats from '../../Contexts/Cats';
 
-function Line({ cat, movies }) {
-console.log(cat)
-    const { setDeleteData, setModalData } = useContext(Cats);
-console.log(cat)
+function Line({ cat}) {
+    
+    const { setDeleteData, setModalData, movies } = useContext(Cats);
+console.log(movies)
     return (
         <li className="list-group-item">
             <div className="line">
                 <div className="line__content">
                     <div className="line__content__title">
-                        {cat.titl}
+                        Container size {cat.titl}
                     </div>
-                    <div className="line__content__title">
+                    
+                       <div className="line__content__title">Number: {cat.numbers}</div>
+                   
+                    <div className="line__content__title"> Box:
+                    {
+                            movies?.map(m => <option key={m.id} value={m.id}>{m.title}{m.image}{m.price}{m.tim}{m.sav}</option>)
+                        }
+                    </div>
+                    <div className="line__content__title"> Box:
                     {
                             movies?.map(m => <option key={m.id} value={m.id}>{m.title}{m.image}{m.price}{m.tim}{m.sav}</option>)
                         }

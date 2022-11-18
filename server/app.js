@@ -118,20 +118,20 @@ app.post("/login", (req, res) => {
 //CREATE
 app.post("/server/cats", (req, res) => {
     const sql = `
-    INSERT INTO cats (titl, movie_id)
+    INSERT INTO cats (titl, numbers)
     VALUES (?, ?)
     `;
-    con.query(sql, [req.body.titl, req.body.movie_id], (err, result) => {
+    con.query(sql, [req.body.titl, req.body.numbers], (err, result) => {
         if (err) throw err;
         res.send(result);
     });
 });
 app.post("/server/movies", (req, res) => {
     const sql = `
-    INSERT INTO movies (title, price, tim, sav, image)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO movies (title, price, tim, sav, image, cats_id)
+    VALUES (?, ?, ?, ?, ?, ?)
     `;
-    con.query(sql, [req.body.title, req.body.price, req.body.tim, req.body.sav, req.body.image,], (err, result) => {
+    con.query(sql, [req.body.title, req.body.price, req.body.tim, req.body.sav, req.body.image, req.body.cats_id], (err, result) => {
         if (err) throw err;
         res.send(result);
     });
@@ -140,11 +140,9 @@ app.post("/server/movies", (req, res) => {
 // READ (all)
 app.get("/server/cats", (req, res) => {
     const sql = `
-    SELECT c.*, m.id AS mid, m.title
+    SELECT *
     FROM cats AS c
-    INNER JOIN movies AS m
-    ON c.movie_id = m.id
-    ORDER BY c.titl
+    ORDER BY id DESC
     `;
     con.query(sql, (err, result) => {
         if (err) throw err;
@@ -154,9 +152,11 @@ app.get("/server/cats", (req, res) => {
 // READ (all)
 app.get("/server/movies", (req, res) => {
     const sql = `
-    SELECT *
-    FROM movies
-    ORDER BY id DESC
+    SELECT m.*, c.id AS cid
+    FROM movies AS m
+    LEFT JOIN cats AS c
+    ON m.cats_id = c.id
+    ORDER BY m.title
     `;
     con.query(sql, (err, result) => {
         if (err) throw err;
@@ -168,7 +168,7 @@ app.get("/home/movies", (req, res) => {
     SELECT m.*, c.titl AS catTitl, c.id AS cid
     FROM movies AS m
     INNER JOIN cats AS c
-    ON m.cat_id = c.id
+    ON m.cats_id = c.id
     ORDER BY m.title
     `;
     con.query(sql, (err, result) => {
@@ -205,7 +205,7 @@ app.delete("/server/movies/:id", (req, res) => {
 app.put("/server/cats/:id", (req, res) => {
     const sql = `
     UPDATE cats
-    SET title = ?
+    SET titl = ?
     WHERE id = ?
     `;
     con.query(sql, [req.body.title, req.params.id], (err, result) => {
