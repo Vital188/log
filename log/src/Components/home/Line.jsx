@@ -43,8 +43,8 @@ function Line({ movie }) {
 
                     <ul className="list-group">
                     {
-                        movie[1]?.map(c => c.cat_id !== null ? <li key={c.cid} className="list-group-item"><h2>{c.title}</h2><div><img src={c.image} alt={c.title}>
-                        </img>{c.price}{c.tim}</div></li> : null)
+                        movie[1]?.map(c => c.cat_id !== null ? <div key={c.cid} className="list-group-item"><h2>{c.title}</h2><div><img src={c.image} alt={c.title}>
+                        </img>{c.price}{c.tim}</div></div> : null)
                     }
                 </ul>
 
